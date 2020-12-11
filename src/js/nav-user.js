@@ -53,7 +53,7 @@ class createNav {
       res.forEach((item) => {
         html += `
           <li>
-            <a href="${item.url ? item.url : "#"}">
+            <a href="${item.url ? item.url : "#"}" target="_blank">
               <img src="${item.key ? item.key : "#"}"/>
               <span>${item.name ? item.name : "-"}</span>
             </a>
@@ -142,8 +142,8 @@ class createAvatar {
           </span>
         </div>
         <ol id="dropMenu" class="drop-menu">
-          <li><a href="${res.profile}">个人主页</a></li>
-          <li><a href="${res.logout}">退出</a></li>
+          <li><a href="${res.profileUrl}" target="_blank">个人主页</a></li>
+          <li><a href="${res.logoutUrl}">退出</a></li>
         </ol>
       </div>`;
       this.DOM.innerHTML = html;

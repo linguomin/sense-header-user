@@ -1,8 +1,8 @@
 {
   "name": "sense-header-user",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "展示公用导航及头像，用户等",
-  "main": "./dist/nav-user.js",
+  "main": "./src/nav-user.js",
   "scripts": {
     "start": "webpack serve",
     "dev": "webpack --mode development",
@@ -31,6 +31,6 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "sense-jump-login": "^1.0.2"
+    "sense-jump-login": "^1.0.4"
   }
 }
