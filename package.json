@@ -16,7 +16,7 @@
     "avatar"
   ],
   "author": "linguomin",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/linguomin/sense-header-user/issues"
   },
@@ -31,6 +31,6 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "sense-jump-login": "^1.0.0"
+    "sense-jump-login": "^1.0.2"
   }
 }
