@@ -42,11 +42,11 @@ user.init();
 2、调用返回数据方法，获取用户信息、导航信息，自己集成相应的DOM
 
 navlist.getNavList().then(res=>{
-  // res就是你想要的数据
+  // res就是导航信息
   console.log(res);
 });
 user.getUserInfo().then(res=>{
-  // res就是你想要的数据
+  // res就是用户信息
   console.log(res);
 });
 

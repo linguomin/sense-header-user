@@ -18,6 +18,7 @@ function fetchGet(url) {
     axios
       .get(url)
       .then((res) => {
+        // resolve(res.data);
         if (code === 200) {
           resolve(res.data.data);
         } else {
@@ -45,11 +46,11 @@ class createNav {
       this.addStyle();
       let html = `
       <div class="nav-content">
-        <div class="drop-btn">
+        <div id="dropBtn" class="drop-btn">
           <img src="${open}"/>
           <span>系统导航</span>
         </div>
-        <ol class="drop-menu">`;
+        <ol id="navDropMenu" class="nav-drop-menu">`;
       res.forEach((item) => {
         html += `
           <li>
@@ -63,6 +64,17 @@ class createNav {
 
       html += `</ol></div>`;
       this.DOM.innerHTML = html;
+      const dropBtn = document.getElementById("dropBtn");
+      const navDropMenu = document.getElementById("navDropMenu");
+      dropBtn.onclick = () => {
+        if (navDropMenu.style.visibility === "visible") {
+          navDropMenu.style.visibility = "hidden";
+          navDropMenu.style.opacity = 0;
+        } else {
+          navDropMenu.style.opacity = 1;
+          navDropMenu.style.visibility = "visible";
+        }
+      };
     });
   }
   addStyle() {
@@ -72,17 +84,20 @@ class createNav {
     .nav-content{ position: relative; color: #fff; }
     .nav-content>.drop-btn{
       cursor: pointer;
-      padding: 14px 20px;
+      padding: 18px 20px;
     }
-    .nav-content>.drop-menu{
+    .nav-content>.nav-drop-menu{
       background: #16223B;
       margin: 0;
       padding: 10px 0 0 10px;
       max-width: 600px;
       border-top: 1px solid #fff;
       list-style: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .5s ease-out;
     }
-    .nav-content>.drop-menu::after {
+    .nav-content>.nav-drop-menu::after {
       content: "";
       display: block;
       height: 0;
@@ -90,7 +105,7 @@ class createNav {
       visibility: hidden;
       overflow: hidden;
     }
-    .nav-content>.drop-menu>li{
+    .nav-content>.nav-drop-menu>li{
       width: 140px;
       height: 45px;
       background: rgba(255, 255, 255, 0.04);
@@ -99,11 +114,11 @@ class createNav {
       margin-bottom: 10px;
       float: left;
     }
-    .nav-content>.drop-menu>li:hover,
-    .nav-content>.drop-menu>li.active{
+    .nav-content>.nav-drop-menu>li:hover,
+    .nav-content>.nav-drop-menu>li.active{
       border-left: 3px solid #0FD0F2;
     }
-    .nav-content>.drop-menu>li>a>img{
+    .nav-content>.nav-drop-menu>li>a>img{
       vertical-align: sub;
     }
     .nav-content a {
@@ -138,7 +153,9 @@ class createAvatar {
           <img src="${defalt_avatar}" alt="默认头像" />
           <span class="detail">
             <div class="name">${res.name ? res.name : "-"}</div>
-            <div class="role">${res.role.name ? res.role.name : "-"}</div>
+            <div class="role">${
+              res.role && res.role.name ? res.role.name : "-"
+            }</div>
           </span>
         </div>
         <ol id="dropMenu" class="drop-menu">
@@ -151,9 +168,11 @@ class createAvatar {
       const dropMenu = document.getElementById("dropMenu");
       dropMenu.onmouseover = avatarContent.onmouseover = () => {
         dropMenu.style.visibility = "visible";
+        dropMenu.style.opacity = 1;
       };
       dropMenu.onmouseout = avatarContent.onmouseout = () => {
         dropMenu.style.visibility = "hidden";
+        dropMenu.style.opacity = 0;
       };
     });
   }
@@ -180,6 +199,8 @@ class createAvatar {
       padding: 0;
       border-radius: 3px;
       visibility: hidden;
+      opacity: 0;
+      transition: all .5s ease-out;
     }
     .user-info>.drop-menu>li{
       padding: 5px 10px;

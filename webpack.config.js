@@ -13,7 +13,7 @@ module.exports = {
     publicPath: "/",
     proxy: {
       "/uums": {
-        target: "http://127.0.0.1:9000",
+        target: "http://10.198.3.28:9001",
         secure: false,
         changeOrigin: true,
       },

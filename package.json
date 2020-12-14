@@ -1,6 +1,6 @@
 {
   "name": "sense-header-user",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "展示公用导航及头像，用户等",
   "main": "./src/nav-user.js",
   "scripts": {
@@ -31,6 +31,6 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "sense-jump-login": "^1.0.4"
+    "sense-jump-login": "^1.0.6"
   }
 }
