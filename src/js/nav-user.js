@@ -12,6 +12,17 @@ import resource from "../image/resource.svg";
 import train from "../image/train.svg";
 import user from "../image/user.svg";
 
+const imageUrl = {
+  datacenter: datacenter,
+  evalution: evalution,
+  inference: inference,
+  mark: mark,
+  panorama: panorama,
+  resource: resource,
+  train: train,
+  user: user,
+};
+
 // get请求，失败401跳登录
 function fetchGet(url) {
   return new Promise((resolve, reject) => {
@@ -65,12 +76,13 @@ function addNavStyle() {
     margin: 0;
     padding: 10px 0 0 10px;
     max-width: 600px;
-    border-top: 1px solid #fff;
+    border-top: 1px solid #454a54;
     list-style: none;
     visibility: hidden;
     opacity: 0;
     transition: all .5s ease-out;
     z-index: 99999;
+    position: relative;
   }
   .nav-content>.nav-drop-menu::after {
     content: "";
@@ -119,7 +131,6 @@ function addUserStyle() {
   .user-info{ position: relative; }
   .user-info>.avatar {
     cursor: pointer;
-    width: 110px;
     display: flex;
     justify-content: space-between;
     color: #fff;
@@ -171,7 +182,7 @@ function createNav(DOM, baseuri) {
       html += `
         <li>
           <a href="${item.url ? item.url : "#"}" target="_blank">
-            <img src="${item.key ? item.key : "#"}"/>
+            <img src="${item.key ? imageUrl[item.key] : "#"}"/>
             <span>${item.name ? item.name : "-"}</span>
           </a>
         </li>
