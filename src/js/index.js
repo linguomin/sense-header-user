@@ -1,11 +1,13 @@
-import { createNav, createAvatar } from "./nav-user";
+import senseHeader from "./nav-user";
 
 const navDOM = document.getElementById("nav");
 const avatarDOM = document.getElementById("avatar");
 
-const navlist = new createNav(navDOM);
-const user = new createAvatar(avatarDOM);
-console.log(navlist);
-console.log(user);
-navlist.init();
-user.init();
+senseHeader.createNav(navDOM);
+senseHeader.createAvatar(avatarDOM);
+senseHeader.getNavList().then((res) => {
+  console.log(res);
+});
+senseHeader.getUserInfo().then((res) => {
+  console.log(res);
+});
