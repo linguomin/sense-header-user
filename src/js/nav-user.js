@@ -19,7 +19,7 @@ function fetchGet(url) {
       .get(url)
       .then((res) => {
         // resolve(res.data);
-        if (code === 200) {
+        if (res.data.code === 200) {
           resolve(res.data.data);
         } else {
           resolve(res);
