@@ -27,12 +27,12 @@ import senseHeader from "./nav-user";
 const navDOM = document.getElementById("nav");
 const avatarDOM = document.getElementById("avatar");
 
-senseHeader.createNav(navDOM);
-senseHeader.createAvatar(avatarDOM);
-senseHeader.getNavList().then((res) => {
+senseHeader.createNav(navDOM, baseuri);
+senseHeader.createAvatar(avatarDOM, baseuri);
+senseHeader.getNavList(baseuri).then((res) => {
   console.log(res);
 });
-senseHeader.getUserInfo().then((res) => {
+senseHeader.getUserInfo(baseuri).then((res) => {
   console.log(res);
 });
 ```

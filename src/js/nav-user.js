@@ -35,16 +35,16 @@ function fetchGet(url) {
 /**
  * 获取导航信息
  */
-async function getNavList() {
-  const navList = await fetchGet("/uumsapi/uums/navbars");
+async function getNavList(baseuri) {
+  const navList = await fetchGet(baseuri + "/uumsapi/uums/navbars");
   return navList;
 }
 
 /**
  * 获取个人信息
  */
-async function getUserInfo() {
-  const userinfo = await fetchGet("/uumsapi/uums/user_info");
+async function getUserInfo(baseuri) {
+  const userinfo = await fetchGet(baseuri + "/uumsapi/uums/user_info");
   return userinfo;
 }
 
@@ -155,9 +155,9 @@ function addUserStyle() {
  * 创建导航
  * @param {DOM元素} DOM
  */
-function createNav(DOM) {
+function createNav(DOM, baseuri) {
   addNavStyle();
-  getNavList().then((res) => {
+  getNavList(baseuri).then((res) => {
     let html = `
     <div class="nav-content">
       <div id="dropBtn" class="drop-btn">
@@ -198,7 +198,7 @@ function createNav(DOM) {
  */
 function createAvatar(DOM, baseuri) {
   addUserStyle();
-  getUserInfo().then((res) => {
+  getUserInfo(baseuri).then((res) => {
     const html = `
     <div class="user-info">
       <div id="avatarContent" class="avatar">
