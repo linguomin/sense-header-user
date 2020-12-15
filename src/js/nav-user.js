@@ -36,7 +36,7 @@ function fetchGet(url) {
  * 获取导航信息
  */
 async function getNavList() {
-  const navList = await fetchGet("/uums/navbars");
+  const navList = await fetchGet("/uumsapi/uums/navbars");
   return navList;
 }
 
@@ -44,7 +44,7 @@ async function getNavList() {
  * 获取个人信息
  */
 async function getUserInfo() {
-  const userinfo = await fetchGet("/uums/user_info");
+  const userinfo = await fetchGet("/uumsapi/uums/user_info");
   return userinfo;
 }
 
