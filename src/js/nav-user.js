@@ -196,7 +196,7 @@ function createNav(DOM) {
  * 创建个人信息
  * @param {DOM元素} DOM
  */
-function createAvatar(DOM) {
+function createAvatar(DOM, baseuri) {
   addUserStyle();
   getUserInfo().then((res) => {
     const html = `
@@ -212,7 +212,7 @@ function createAvatar(DOM) {
       </div>
       <ol id="dropMenu" class="drop-menu">
         <li><a href="${res.profileUrl}" target="_blank">个人主页</a></li>
-        <li><a href="${res.logoutUrl}">退出</a></li>
+        <li><a href="${baseuri + "/logout"}">退出</a></li>
       </ol>
     </div>`;
     DOM.innerHTML = html;
