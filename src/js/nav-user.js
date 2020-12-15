@@ -70,6 +70,7 @@ function addNavStyle() {
     visibility: hidden;
     opacity: 0;
     transition: all .5s ease-out;
+    z-index: 99999;
   }
   .nav-content>.nav-drop-menu::after {
     content: "";
@@ -136,6 +137,7 @@ function addUserStyle() {
     visibility: hidden;
     opacity: 0;
     transition: all .5s ease-out;
+    z-index: 99999;
   }
   .user-info>.drop-menu>li{
     padding: 5px 10px;
