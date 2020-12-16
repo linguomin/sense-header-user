@@ -1,6 +1,6 @@
 {
   "name": "sense-header-user",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "展示公用导航及头像，用户等",
   "main": "./src/js/nav-user.js",
   "scripts": {

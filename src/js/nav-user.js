@@ -75,7 +75,7 @@ function addNavStyle() {
     background: #16223B;
     margin: 0;
     padding: 10px 0 0 10px;
-    max-width: 600px;
+    max-width: 610px;
     border-top: 1px solid #454a54;
     list-style: none;
     visibility: hidden;
@@ -135,7 +135,7 @@ function addUserStyle() {
     justify-content: space-between;
     color: #fff;
   }
-  .user-info>.avatar>img{ width:35px; }
+  .user-info>.avatar>img{ width: 35px; height: 35px; margin-right: 10px; }
   .user-info>.drop-menu {
     list-style: none;
     background: #16223B;
