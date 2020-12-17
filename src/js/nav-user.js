@@ -84,10 +84,9 @@ function addNavStyle() {
     max-width: 610px;
     border-top: 1px solid #454a54;
     list-style: none;
-    display: none;
+    visibility: hidden;
     opacity: 0;
     transition: all .5s ease-out;
-    z-index: 99999;
     position: relative;
   }
   .nav-content>.nav-drop-menu::after {
@@ -151,10 +150,9 @@ function addUserStyle() {
     margin: 0;
     padding: 0;
     border-radius: 3px;
-    display: none;
+    visibility: hidden;
     opacity: 0;
     transition: all .5s ease-out;
-    z-index: 99999;
   }
   .user-info>.drop-menu>li{
     padding: 5px 10px;
@@ -202,18 +200,15 @@ function createNav(DOM, baseuri) {
     const dropBtn = document.getElementById("dropBtn");
     const navDropMenu = document.getElementById("navDropMenu");
     dropBtn.onclick = () => {
-      if (navDropMenu.style.display === "block") {
-        navDropMenu.style.display = "none";
+      if (navDropMenu.style.visibility === "visible") {
+        navDropMenu.style.visibility = "hidden";
         navDropMenu.style.opacity = 0;
+        navDropMenu.style.zIndex = 0;
       } else {
         navDropMenu.style.opacity = 1;
-        navDropMenu.style.display = "block";
+        navDropMenu.style.visibility = "visible";
+        navDropMenu.style.zIndex = 99999;
       }
-    };
-    navDropMenu.onmouseout = (e) => {
-      e.stopPropagation();
-      navDropMenu.style.display = "none";
-      navDropMenu.style.opacity = 0;
     };
   });
 }
@@ -245,17 +240,15 @@ function createAvatar(DOM, baseuri) {
     const avatarContent = document.getElementById("avatarContent");
     const dropMenu = document.getElementById("dropMenu");
     avatarContent.onclick = () => {
-      if (dropMenu.style.display === "block") {
-        dropMenu.style.display = "none";
+      if (dropMenu.style.visibility === "visible") {
+        dropMenu.style.visibility = "hidden";
         dropMenu.style.opacity = 0;
+        dropMenu.style.zIndex = 0;
       } else {
         dropMenu.style.opacity = 1;
-        dropMenu.style.display = "block";
+        dropMenu.style.visibility = "visible";
+        dropMenu.style.zIndex = 99999;
       }
-    };
-    dropMenu.onmouseout = () => {
-      dropMenu.style.display = "none";
-      dropMenu.style.opacity = 0;
     };
   });
 }
