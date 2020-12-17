@@ -244,11 +244,16 @@ function createAvatar(DOM, baseuri) {
     DOM.innerHTML = html;
     const avatarContent = document.getElementById("avatarContent");
     const dropMenu = document.getElementById("dropMenu");
-    dropMenu.onmouseover = avatarContent.onmouseover = () => {
-      dropMenu.style.display = "block";
-      dropMenu.style.opacity = 1;
+    avatarContent.onclick = () => {
+      if (dropMenu.style.display === "block") {
+        dropMenu.style.display = "none";
+        dropMenu.style.opacity = 0;
+      } else {
+        dropMenu.style.opacity = 1;
+        dropMenu.style.display = "block";
+      }
     };
-    dropMenu.onmouseout = avatarContent.onmouseout = () => {
+    dropMenu.onmouseout = () => {
       dropMenu.style.display = "none";
       dropMenu.style.opacity = 0;
     };
