@@ -23,6 +23,12 @@ const imageUrl = {
   user: user,
 };
 
+const baseurimap = {
+  "/panorama": "panorama",
+  "/iam": "user",
+  "/resource": "resource",
+};
+
 // get请求，失败401跳登录
 function fetchGet(url) {
   return new Promise((resolve, reject) => {
@@ -37,7 +43,7 @@ function fetchGet(url) {
         }
       })
       .catch((err) => {
-        jumpLogin(err, true);
+        jumpLogin(err);
         reject(err);
       });
   });
@@ -78,7 +84,7 @@ function addNavStyle() {
     max-width: 610px;
     border-top: 1px solid #454a54;
     list-style: none;
-    visibility: hidden;
+    display: none;
     opacity: 0;
     transition: all .5s ease-out;
     z-index: 99999;
@@ -140,12 +146,12 @@ function addUserStyle() {
     list-style: none;
     background: #16223B;
     position: absolute;
-    top: 36px;
+    top: 50px;
     left: 10px;
     margin: 0;
     padding: 0;
     border-radius: 3px;
-    visibility: hidden;
+    display: none;
     opacity: 0;
     transition: all .5s ease-out;
     z-index: 99999;
@@ -178,29 +184,36 @@ function createNav(DOM, baseuri) {
         <span>系统导航</span>
       </div>
       <ol id="navDropMenu" class="nav-drop-menu">`;
-    res.forEach((item) => {
-      html += `
-        <li>
+    if (res && res.length) {
+      res.forEach((item) => {
+        html += `
+        <li class="${baseurimap[baseuri] === item.key ? "active" : ""}">
           <a href="${item.url ? item.url : "#"}" target="_blank">
             <img src="${item.key ? imageUrl[item.key] : "#"}"/>
             <span>${item.name ? item.name : "-"}</span>
           </a>
         </li>
         `;
-    });
+      });
+    }
 
     html += `</ol></div>`;
     DOM.innerHTML = html;
     const dropBtn = document.getElementById("dropBtn");
     const navDropMenu = document.getElementById("navDropMenu");
     dropBtn.onclick = () => {
-      if (navDropMenu.style.visibility === "visible") {
-        navDropMenu.style.visibility = "hidden";
+      if (navDropMenu.style.display === "block") {
+        navDropMenu.style.display = "none";
         navDropMenu.style.opacity = 0;
       } else {
         navDropMenu.style.opacity = 1;
-        navDropMenu.style.visibility = "visible";
+        navDropMenu.style.display = "block";
       }
+    };
+    navDropMenu.onmouseout = (e) => {
+      e.stopPropagation();
+      navDropMenu.style.display = "none";
+      navDropMenu.style.opacity = 0;
     };
   });
 }
@@ -232,11 +245,11 @@ function createAvatar(DOM, baseuri) {
     const avatarContent = document.getElementById("avatarContent");
     const dropMenu = document.getElementById("dropMenu");
     dropMenu.onmouseover = avatarContent.onmouseover = () => {
-      dropMenu.style.visibility = "visible";
+      dropMenu.style.display = "block";
       dropMenu.style.opacity = 1;
     };
     dropMenu.onmouseout = avatarContent.onmouseout = () => {
-      dropMenu.style.visibility = "hidden";
+      dropMenu.style.display = "none";
       dropMenu.style.opacity = 0;
     };
   });
