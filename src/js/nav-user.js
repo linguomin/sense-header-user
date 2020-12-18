@@ -32,6 +32,8 @@ const baseurimap = {
 // get请求，失败401跳登录
 function fetchGet(url) {
   return new Promise((resolve, reject) => {
+    // axios.defaults.headers.common["X-ID-Token"] =
+    //   "eyJpYXQiOjE2MDgyNzE3OTYsInNjb3BlIjoib3BlbmlkIG9mZmxpbmUiLCJhY3RpdmUiOnRydWUsInRva2VuX3R5cGUiOiJhY2Nlc3NfdG9rZW4iLCJleHAiOjE2MDgyNzUzOTYsImNsaWVudF9pZCI6InBhbm9yYW1hIiwic3ViIjoiNDE5MWU3NmYtMTRkYS00OGU2LWFlYjAtMjc1MmQ3ZjJjOTA2IiwiZXh0Ijp7InJvbGVzIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbCwiaWRlbnRpdHkiOnsiY3JlYXRlZF9hdCI6IjIwMjAtMTEtMjVUMDc6NDM6MDZaIiwib3JnX2lkIjoiMDk3NzgxZjgtM2RiYi00NThiLTg1MjYtZGMxNTgwMDIwMTc1IiwibmFtZSI6ImFkbWluIiwic3RhdHVzIjoiYWN0aXZlIiwiZW1haWwiOiJzZW5zZXNwcmluZ0BzZW5zZXRpbWUuY29tIiwib3JnX25hbWUiOiJkZWZhdWx0Iiwib3JnX3Nob3J0X25hbWUiOiJkZWZhdWx0IiwidXBkYXRlZF9hdCI6IjIwMjAtMTItMDJUMDM6Mjc6NTdaIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlkIjoiNDE5MWU3NmYtMTRkYS00OGU2LWFlYjAtMjc1MmQ3ZjJjOTA2IiwiaWRlbnRpdHlfdHlwZSI6IlRlbmFudF9BZG1pbiIsImJpbGxpbmdfZGF0ZSI6NX0sInJzIjp7IklEIjoiM2JiNTI1ZmItZDU0ZS00YjM5LWEyZjgtMWU4MmNhOTY4MDMxIn19LCJpc3MiOiJodHRwOlwvXC8xMC4xOTguMy4yODozMTExMlwvaWFtXC8ifQ==";
     axios
       .get(url)
       .then((res) => {
@@ -84,11 +86,11 @@ function addNavStyle() {
     max-width: 610px;
     border-top: 1px solid #454a54;
     list-style: none;
-    visibility: hidden;
+    display: none;
     opacity: 0;
     transition: all .5s ease-out;
     position: relative;
-    z-index: -99999;
+    z-index: 99999;
   }
   .nav-content>.nav-drop-menu::after {
     content: "";
@@ -147,14 +149,14 @@ function addUserStyle() {
     background: #16223B;
     position: absolute;
     top: 50px;
-    left: 10px;
+    left: 0;
     margin: 0;
     padding: 0;
     border-radius: 3px;
-    visibility: hidden;
+    display: none;
     opacity: 0;
     transition: all .5s ease-out;
-    z-index: -99999;
+    z-index: 99999;
   }
   .user-info>.drop-menu>li{
     padding: 5px 10px;
@@ -201,16 +203,22 @@ function createNav(DOM, baseuri) {
     DOM.innerHTML = html;
     const dropBtn = document.getElementById("dropBtn");
     const navDropMenu = document.getElementById("navDropMenu");
-    dropBtn.onclick = () => {
-      if (navDropMenu.style.visibility === "visible") {
-        navDropMenu.style.visibility = "hidden";
+    dropBtn.onclick = (e) => {
+      e.stopPropagation();
+      if (navDropMenu.style.display === "block") {
+        navDropMenu.style.display = "none";
         navDropMenu.style.opacity = 0;
-        navDropMenu.style.zIndex = -99999;
       } else {
         navDropMenu.style.opacity = 1;
-        navDropMenu.style.visibility = "visible";
-        navDropMenu.style.zIndex = 99999;
+        navDropMenu.style.display = "block";
       }
+    };
+    document.addEventListener("click", () => {
+      navDropMenu.style.display = "none";
+      navDropMenu.style.opacity = 0;
+    });
+    navDropMenu.onclick = (e) => {
+      e.stopPropagation();
     };
   });
 }
@@ -241,16 +249,22 @@ function createAvatar(DOM, baseuri) {
     DOM.innerHTML = html;
     const avatarContent = document.getElementById("avatarContent");
     const dropMenu = document.getElementById("dropMenu");
-    avatarContent.onclick = () => {
-      if (dropMenu.style.visibility === "visible") {
-        dropMenu.style.visibility = "hidden";
+    avatarContent.onclick = (e) => {
+      e.stopPropagation();
+      if (dropMenu.style.display === "block") {
+        dropMenu.style.display = "none";
         dropMenu.style.opacity = 0;
-        dropMenu.style.zIndex = -99999;
       } else {
         dropMenu.style.opacity = 1;
-        dropMenu.style.visibility = "visible";
-        dropMenu.style.zIndex = 99999;
+        dropMenu.style.display = "block";
       }
+    };
+    document.addEventListener("click", () => {
+      dropMenu.style.display = "none";
+      dropMenu.style.opacity = 0;
+    });
+    dropMenu.onclick = (e) => {
+      e.stopPropagation();
     };
   });
 }
