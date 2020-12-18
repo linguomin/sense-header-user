@@ -88,6 +88,7 @@ function addNavStyle() {
     opacity: 0;
     transition: all .5s ease-out;
     position: relative;
+    z-index: -99999;
   }
   .nav-content>.nav-drop-menu::after {
     content: "";
@@ -153,6 +154,7 @@ function addUserStyle() {
     visibility: hidden;
     opacity: 0;
     transition: all .5s ease-out;
+    z-index: -99999;
   }
   .user-info>.drop-menu>li{
     padding: 5px 10px;
@@ -203,7 +205,7 @@ function createNav(DOM, baseuri) {
       if (navDropMenu.style.visibility === "visible") {
         navDropMenu.style.visibility = "hidden";
         navDropMenu.style.opacity = 0;
-        navDropMenu.style.zIndex = 0;
+        navDropMenu.style.zIndex = -99999;
       } else {
         navDropMenu.style.opacity = 1;
         navDropMenu.style.visibility = "visible";
@@ -243,7 +245,7 @@ function createAvatar(DOM, baseuri) {
       if (dropMenu.style.visibility === "visible") {
         dropMenu.style.visibility = "hidden";
         dropMenu.style.opacity = 0;
-        dropMenu.style.zIndex = 0;
+        dropMenu.style.zIndex = -99999;
       } else {
         dropMenu.style.opacity = 1;
         dropMenu.style.visibility = "visible";
