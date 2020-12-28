@@ -27,6 +27,7 @@ const baseurimap = {
   "/panorama": "panorama",
   "/iam": "user",
   "/resource": "resource",
+  "/evaluate": "evalution",
 };
 
 // get请求，失败401跳登录
