@@ -33,12 +33,9 @@ const baseurimap = {
 // get请求，失败401跳登录
 function fetchGet(url) {
   return new Promise((resolve, reject) => {
-    // axios.defaults.headers.common["X-ID-Token"] =
-    //   "eyJpYXQiOjE2MDgyNzE3OTYsInNjb3BlIjoib3BlbmlkIG9mZmxpbmUiLCJhY3RpdmUiOnRydWUsInRva2VuX3R5cGUiOiJhY2Nlc3NfdG9rZW4iLCJleHAiOjE2MDgyNzUzOTYsImNsaWVudF9pZCI6InBhbm9yYW1hIiwic3ViIjoiNDE5MWU3NmYtMTRkYS00OGU2LWFlYjAtMjc1MmQ3ZjJjOTA2IiwiZXh0Ijp7InJvbGVzIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbCwiaWRlbnRpdHkiOnsiY3JlYXRlZF9hdCI6IjIwMjAtMTEtMjVUMDc6NDM6MDZaIiwib3JnX2lkIjoiMDk3NzgxZjgtM2RiYi00NThiLTg1MjYtZGMxNTgwMDIwMTc1IiwibmFtZSI6ImFkbWluIiwic3RhdHVzIjoiYWN0aXZlIiwiZW1haWwiOiJzZW5zZXNwcmluZ0BzZW5zZXRpbWUuY29tIiwib3JnX25hbWUiOiJkZWZhdWx0Iiwib3JnX3Nob3J0X25hbWUiOiJkZWZhdWx0IiwidXBkYXRlZF9hdCI6IjIwMjAtMTItMDJUMDM6Mjc6NTdaIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlkIjoiNDE5MWU3NmYtMTRkYS00OGU2LWFlYjAtMjc1MmQ3ZjJjOTA2IiwiaWRlbnRpdHlfdHlwZSI6IlRlbmFudF9BZG1pbiIsImJpbGxpbmdfZGF0ZSI6NX0sInJzIjp7IklEIjoiM2JiNTI1ZmItZDU0ZS00YjM5LWEyZjgtMWU4MmNhOTY4MDMxIn19LCJpc3MiOiJodHRwOlwvXC8xMC4xOTguMy4yODozMTExMlwvaWFtXC8ifQ==";
     axios
       .get(url)
       .then((res) => {
-        // resolve(res.data);
         if (res.data.code === 200) {
           resolve(res.data.data);
         } else {
@@ -191,7 +188,7 @@ function createNav(DOM, baseuri) {
       res.forEach((item) => {
         html += `
         <li class="${baseurimap[baseuri] === item.key ? "active" : ""}">
-          <a href="${item.url ? item.url : "#"}" target="_blank">
+          <a href="${item.url ? item.url : "#"}">
             <img src="${item.key ? imageUrl[item.key] : "#"}"/>
             <span>${item.name ? item.name : "-"}</span>
           </a>
@@ -243,7 +240,7 @@ function createAvatar(DOM, baseuri) {
         </span>
       </div>
       <ol id="dropMenu" class="drop-menu">
-        <li><a href="${res.profileUrl}" target="_blank">个人主页</a></li>
+        <li><a href="${res.profileUrl}">个人主页</a></li>
         <li><a href="${baseuri + "/logout"}">退出</a></li>
       </ol>
     </div>`;
