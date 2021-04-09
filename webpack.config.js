@@ -12,8 +12,8 @@ module.exports = {
   devServer: {
     publicPath: "/",
     proxy: {
-      "/uums": {
-        target: "http://127.0.0.1:32767",
+      "/panorama/uumsapi": {
+        target: "https://10.53.5.7:31113",
         secure: false,
         changeOrigin: true,
       },

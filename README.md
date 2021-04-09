@@ -22,19 +22,19 @@ npm run build
 ### 组件内引入
 
 ```import
-import senseHeader from "./nav-user";
+import SenseHeader from "./nav-user";
 
 const navDOM = document.getElementById("nav");
 const avatarDOM = document.getElementById("avatar");
 
-senseHeader.createNav(navDOM, baseuri);
-senseHeader.createAvatar(avatarDOM, baseuri);
-senseHeader.getNavList(baseuri).then((res) => {
-  console.log(res);
-});
-senseHeader.getUserInfo(baseuri).then((res) => {
-  console.log(res);
-});
+// new实例时候传入接口前缀（项目前缀）
+const senseHeader = new SenseHeader("/panorama");
+
+// 传入系统导航的容器DOM生成系统导航并获取导航列表，如果不需要获取不需要then
+senseHeader.initNav(navDOM).then(res=>{console.log(res);})
+
+// 传入个人信息的容器DOM生成个人信息并获取用户信息，如果不需要获取不需要then
+senseHeader.initAvatar(avatarDOM).then(res=>{console.log(res);})
 ```
 
 ***插件如有bug请联系linguomin_sam@163.com***
